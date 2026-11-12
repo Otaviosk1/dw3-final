@@ -1,0 +1,46 @@
+### Login para obter token
+# @name loginAutenticado
+POST http://localhost:40000/Login HTTP/1.1
+content-type: application/json
+
+{
+    "username": "qwe",
+    "password": "qwe"
+}
+
+###
+@accessToken = {{loginAutenticado.response.body.$.token}}
+
+### GetAllPasto
+GET http://localhost:40000/getAllPasto HTTP/1.1
+Authorization: Bearer {{accessToken}}
+
+### GetPastoByID
+GET http://localhost:40000/getPastoByID/1 HTTP/1.1
+Authorization: Bearer {{accessToken}}
+
+### InsertPasto
+POST http://localhost:40000/insertPasto HTTP/1.1
+content-type: application/json
+Authorization: Bearer {{accessToken}}
+
+{
+    "descricao": "Pasto Leste",
+    "areatotal": 95.40,
+    "removido": false
+}
+
+### UpdatePasto
+PUT http://localhost:40000/updatePasto/1 HTTP/1.1
+content-type: application/json
+Authorization: Bearer {{accessToken}}
+
+{
+    "descricao": "Pasto Norte Atualizado",
+    "areatotal": 130.00,
+    "removido": false
+}
+
+### DeletePasto
+DELETE http://localhost:40000/deletePasto/3 HTTP/1.1
+Authorization: Bearer {{accessToken}}

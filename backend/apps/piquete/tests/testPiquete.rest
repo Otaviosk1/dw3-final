@@ -1,0 +1,50 @@
+### Login para obter token
+# @name loginAutenticado
+POST http://localhost:40000/Login HTTP/1.1
+content-type: application/json
+
+{
+    "username": "qwe",
+    "password": "qwe"
+}
+
+###
+@accessToken = {{loginAutenticado.response.body.$.token}}
+
+### GetAllPiquete
+GET http://localhost:40000/getAllPiquete HTTP/1.1
+Authorization: Bearer {{accessToken}}
+
+### GetPiqueteByID
+GET http://localhost:40000/getPiqueteByID/1 HTTP/1.1
+Authorization: Bearer {{accessToken}}
+
+### InsertPiquete
+POST http://localhost:40000/insertPiquete HTTP/1.1
+content-type: application/json
+Authorization: Bearer {{accessToken}}
+
+{
+    "descricao": "Piquete C1",
+    "latitude": -20.426000,
+    "longitude": -49.976000,
+    "pastoidfk": 1,
+    "removido": false
+}
+
+### UpdatePiquete
+PUT http://localhost:40000/updatePiquete/1 HTTP/1.1
+content-type: application/json
+Authorization: Bearer {{accessToken}}
+
+{
+    "descricao": "Piquete A1 Atualizado",
+    "latitude": -20.422550,
+    "longitude": -49.972850,
+    "pastoidfk": 1,
+    "removido": false
+}
+
+### DeletePiquete
+DELETE http://localhost:40000/deletePiquete/3 HTTP/1.1
+Authorization: Bearer {{accessToken}}

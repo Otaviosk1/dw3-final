@@ -1,0 +1,46 @@
+### Login para obter token
+# @name loginAutenticado
+POST http://localhost:40000/Login HTTP/1.1
+content-type: application/json
+
+{
+    "username": "qwe",
+    "password": "qwe"
+}
+
+###
+@accessToken = {{loginAutenticado.response.body.$.token}}
+
+### GetAllAnimal
+GET http://localhost:40000/getAllAnimal HTTP/1.1
+Authorization: Bearer {{accessToken}}
+
+### GetAnimalByID
+GET http://localhost:40000/getAnimalByID/1 HTTP/1.1
+Authorization: Bearer {{accessToken}}
+
+### InsertAnimal
+POST http://localhost:40000/insertAnimal HTTP/1.1
+content-type: application/json
+Authorization: Bearer {{accessToken}}
+
+{
+    "nome": "Estrela",
+    "datanasc": "2023-04-10",
+    "removido": false
+}
+
+### UpdateAnimal
+PUT http://localhost:40000/updateAnimal/1 HTTP/1.1
+content-type: application/json
+Authorization: Bearer {{accessToken}}
+
+{
+    "nome": "Mimosa II",
+    "datanasc": "2022-05-14",
+    "removido": false
+}
+
+### DeleteAnimal
+DELETE http://localhost:40000/deleteAnimal/3 HTTP/1.1
+Authorization: Bearer {{accessToken}}

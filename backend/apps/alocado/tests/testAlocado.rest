@@ -1,0 +1,50 @@
+### Login para obter token
+# @name loginAutenticado
+POST http://localhost:40000/Login HTTP/1.1
+content-type: application/json
+
+{
+    "username": "qwe",
+    "password": "qwe"
+}
+
+###
+@accessToken = {{loginAutenticado.response.body.$.token}}
+
+### GetAllAlocado
+GET http://localhost:40000/getAllAlocado HTTP/1.1
+Authorization: Bearer {{accessToken}}
+
+### GetAlocadoByID
+GET http://localhost:40000/getAlocadoByID/1 HTTP/1.1
+Authorization: Bearer {{accessToken}}
+
+### InsertAlocado
+POST http://localhost:40000/insertAlocado HTTP/1.1
+content-type: application/json
+Authorization: Bearer {{accessToken}}
+
+{
+    "animalidfk": 1,
+    "piqueteidfk": 2,
+    "datainicio": "2026-11-01",
+    "datafinal": "2026-11-10",
+    "removido": false
+}
+
+### UpdateAlocado
+PUT http://localhost:40000/updateAlocado/1 HTTP/1.1
+content-type: application/json
+Authorization: Bearer {{accessToken}}
+
+{
+    "animalidfk": 1,
+    "piqueteidfk": 1,
+    "datainicio": "2026-10-01",
+    "datafinal": "2026-10-20",
+    "removido": false
+}
+
+### DeleteAlocado
+DELETE http://localhost:40000/deleteAlocado/3 HTTP/1.1
+Authorization: Bearer {{accessToken}}

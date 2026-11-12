@@ -1,0 +1,35 @@
+body.app-shell {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background-color: #f4f6f9;
+}
+
+.app-main {
+  flex: 1;
+}
+
+.login-screen {
+  min-height: 80vh;
+}
+
+.login-card {
+  width: 100%;
+  max-width: 420px;
+  border-radius: 0.75rem;
+}
+
+.page-header {
+  margin-bottom: 1.5rem;
+}
+
+.page-kicker {
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.page-card,
+.hero-card {
+  border-radius: 0.75rem;
+}

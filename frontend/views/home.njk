@@ -1,0 +1,61 @@
+{% extends "layout.njk" %}
+{% block content %}
+<header class="page-header">
+  <p class="page-kicker text-success fw-semibold mb-2">Sistema ERP</p>
+  <h1 class="display-6 fw-bold mb-2">Painel principal</h1>
+  <p class="text-secondary mb-0">Selecione um módulo abaixo ou na barra superior para gerenciar o pastejo rotacionado.</p>
+</header>
+
+<div class="row g-4">
+  <div class="col-12 col-md-6 col-lg-3">
+    <div class="hero-card card border-0 shadow-sm h-100">
+      <div class="card-body p-4 d-flex flex-column justify-content-between">
+        <div>
+          <h2 class="h5 fw-semibold mb-2"><i class="bi bi-map text-success me-2"></i>Pastos</h2>
+          <p class="text-secondary small mb-4">Cadastro de áreas totais e identificação dos pastos.</p>
+        </div>
+        <a class="btn btn-outline-success w-100" href="/pasto">Acessar Pastos</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-12 col-md-6 col-lg-3">
+    <div class="hero-card card border-0 shadow-sm h-100">
+      <div class="card-body p-4 d-flex flex-column justify-content-between">
+        <div>
+          <h2 class="h5 fw-semibold mb-2"><i class="bi bi-geo-alt text-success me-2"></i>Piquetes</h2>
+          <p class="text-secondary small mb-4">Subdivisões dos pastos com coordenadas geográficas.</p>
+        </div>
+        <a class="btn btn-outline-success w-100" href="/piquete">Acessar Piquetes</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-12 col-md-6 col-lg-3">
+    <div class="hero-card card border-0 shadow-sm h-100">
+      <div class="card-body p-4 d-flex flex-column justify-content-between">
+        <div>
+          <h2 class="h5 fw-semibold mb-2"><i class="bi bi-tag text-success me-2"></i>Animais</h2>
+          <p class="text-secondary small mb-4">Registro do rebanho e datas de nascimento.</p>
+        </div>
+        <a class="btn btn-outline-success w-100" href="/animal">Acessar Animais</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-12 col-md-6 col-lg-3">
+    <div class="hero-card card border-0 shadow-sm h-100">
+      <div class="card-body p-4 d-flex flex-column justify-content-between">
+        <div>
+          <h2 class="h5 fw-semibold mb-2"><i class="bi bi-arrow-left-right text-success me-2"></i>Alocações</h2>
+          <p class="text-secondary small mb-4">Controle de movimentação de animais nos piquetes.</p>
+        </div>
+        <a class="btn btn-outline-success w-100" href="/alocado">Acessar Alocações</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="/js/dw3frontend.js"></script>
+<script src="/apps/home/vwHome.js"></script>
+{% endblock %}
