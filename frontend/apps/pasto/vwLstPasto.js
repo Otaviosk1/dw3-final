@@ -15,6 +15,7 @@ document.addEventListener("DOMContentLoaded", function () {
   vwGetAllPasto(servidorDw3, alertBox);
 });
 
+// Consome GET /getAllPasto com autenticação JWT e carrega o DataTable
 async function vwGetAllPasto(servidorDw3, alertBox) {
   try {
     if (!servidorDw3) {
@@ -48,6 +49,7 @@ async function vwGetAllPasto(servidorDw3, alertBox) {
   }
 }
 
+// Configura o DataTable com formatação numérica (pt-BR) e botões de ação
 function inicializarTabelaPasto(pastos) {
   new DataTable("#tblPasto", {
     data: pastos,
@@ -112,6 +114,7 @@ function inicializarTabelaPasto(pastos) {
   });
 }
 
+// Redireciona para o formulário passando a operação (Re, Up ou De) e o ID
 function configurarOperacoesPasto() {
   var tabela = document.getElementById("tblPasto");
   if (!tabela) {
@@ -146,6 +149,7 @@ function configurarOperacoesPasto() {
   });
 }
 
+// Escapa caracteres especiais para evitar injeção de HTML na tabela
 function escaparHtml(valor) {
   return String(valor)
     .replace(/&/g, "&amp;")

@@ -1,3 +1,4 @@
+// Valida a sessão e prepara o formulário conforme a operação da URL (Cr, Re, Up ou De)
 document.addEventListener("DOMContentLoaded", async function () {
   if (!dw3IsLogged()) {
     return;
@@ -49,6 +50,7 @@ document.addEventListener("DOMContentLoaded", async function () {
   }
 });
 
+// Inicializa o select de pastos com busca usando Select2
 function inicializarSelectPasto() {
   $("#pastoidfk").select2({
     theme: "bootstrap-5",
@@ -57,6 +59,7 @@ function inicializarSelectPasto() {
   });
 }
 
+// Busca pastos ativos na API para preencher o campo de seleção
 async function carregarPastosToPiquete(servidorDw3) {
   try {
     var response = await fetch(servidorDw3 + "/getAllPasto", {
@@ -92,6 +95,7 @@ async function carregarPastosToPiquete(servidorDw3) {
   }
 }
 
+// Bloqueia edição nos modos de visualização (Re) e remoção (De)
 function desabilitarCamposPiquete() {
   document.getElementById("descricao").disabled = true;
   document.getElementById("latitude").disabled = true;
@@ -109,6 +113,7 @@ function montarPiqueteDoFormulario() {
   };
 }
 
+// Consome GET /getPiqueteByID/:id e preenche o formulário
 async function vwGetPiqueteByID() {
   var form = document.getElementById("frmPiquete");
   try {
@@ -167,6 +172,7 @@ async function vwGetPiqueteByID() {
   }
 }
 
+// Consome POST /insertPiquete enviando o token JWT no cabeçalho
 async function vwInsertPiquete() {
   var form = document.getElementById("frmPiquete");
   var btnInserir = document.getElementById("btnInserirPiquete");
@@ -210,6 +216,7 @@ async function vwInsertPiquete() {
   }
 }
 
+// Consome PUT /updatePiquete/:id para atualizar o registro
 async function vwUpdatePiquete() {
   var form = document.getElementById("frmPiquete");
   var btnAtualizar = document.getElementById("btnAtualizarPiquete");
@@ -261,6 +268,7 @@ async function vwUpdatePiquete() {
   }
 }
 
+// Consome DELETE /deletePiquete/:id (soft delete com checagem de alocações ativas no back-end)
 async function vwDeletePiquete() {
   var form = document.getElementById("frmPiquete");
   var btnRemover = document.getElementById("btnRemoverPiquete");

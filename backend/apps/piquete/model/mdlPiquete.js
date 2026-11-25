@@ -1,5 +1,6 @@
 const db = require("../../../database/databaseconfig");
 
+// Retorna piquetes ativos junto com a descrição do pasto vinculado
 const GetAllPiquete = async () => {
   return (
     await db.query(
@@ -70,6 +71,7 @@ const DeletePiquete = async (piqueteIDPar) => {
   let linhasAfetadas;
   let msg = "ok";
   try {
+    // Impede exclusão lógica se houver alocações ativas vinculadas ao piquete
     const dependentes = (
       await db.query(
         "SELECT COUNT(*) AS total FROM alocado WHERE piqueteidfk = $1 AND removido = false",
@@ -84,6 +86,7 @@ const DeletePiquete = async (piqueteIDPar) => {
       };
     }
 
+    // Soft delete: marca como removido sem apagar fisicamente
     linhasAfetadas = (
       await db.query(
         "UPDATE piquete SET removido = true WHERE piqueteid = $1",

@@ -1,6 +1,7 @@
 var express = require("express");
 var router = express.Router();
 
+// Renderiza a listagem de animais passando a URL do back-end para o front-end
 router.get("/", function (req, res) {
   res.render("animal/vwLstAnimal", {
     title: "Animais",
@@ -10,6 +11,7 @@ router.get("/", function (req, res) {
   });
 });
 
+// Renderiza o formulário de animais (Cr, Re, Up e De)
 router.get("/form", function (req, res) {
   res.render("animal/vwFormAnimal", {
     title: "Formulário de Animais",

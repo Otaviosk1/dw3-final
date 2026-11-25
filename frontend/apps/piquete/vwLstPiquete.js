@@ -15,6 +15,7 @@ document.addEventListener("DOMContentLoaded", function () {
   vwGetAllPiquete(servidorDw3, alertBox);
 });
 
+// Consome GET /getAllPiquete com autenticação JWT e carrega o DataTable
 async function vwGetAllPiquete(servidorDw3, alertBox) {
   try {
     if (!servidorDw3) {
@@ -48,6 +49,7 @@ async function vwGetAllPiquete(servidorDw3, alertBox) {
   }
 }
 
+// Configura o DataTable exibindo coordenadas, pasto vinculado e botões de ação
 function inicializarTabelaPiquete(piquetes) {
   new DataTable("#tblPiquete", {
     data: piquetes,
@@ -102,6 +104,7 @@ function inicializarTabelaPiquete(piquetes) {
   });
 }
 
+// Redireciona para o formulário passando a operação (Re, Up ou De) e o ID
 function configurarOperacoesPiquete() {
   var tabela = document.getElementById("tblPiquete");
   if (!tabela) {
@@ -119,7 +122,7 @@ function configurarOperacoesPiquete() {
 
     if (action === "visualizar") {
       window.location.href =
-        "/piquete/form?oper=Re&piqueteId=" + encodeURIComponent(piqueteId);
+        "/piquete/form?oper=Re&pastoId=" + encodeURIComponent(piqueteId);
       return;
     }
 
@@ -136,6 +139,7 @@ function configurarOperacoesPiquete() {
   });
 }
 
+// Escapa caracteres especiais para evitar injeção de HTML na tabela
 function escaparHtml(valor) {
   return String(valor)
     .replace(/&/g, "&amp;")

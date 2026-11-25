@@ -3,6 +3,7 @@ const mdlAnimal = require("../model/mdlAnimal");
 const GetAllAnimal = (req, res) =>
   (async () => {
     let registro = await mdlAnimal.GetAllAnimal();
+    // Formata a data de nascimento para YYYY-MM-DD
     for (let i = 0; i < registro.length; i++) {
       const row = registro[i];
       if (row.datanasc) {
@@ -16,6 +17,7 @@ const GetAnimalByID = (req, res) =>
   (async () => {
     const animalID = parseInt(req.params.animalid);
     let registro = await mdlAnimal.GetAnimalByID(animalID);
+    // Formata a data para compatibilidade com o campo date do formulário
     for (let i = 0; i < registro.length; i++) {
       const row = registro[i];
       if (row.datanasc) {

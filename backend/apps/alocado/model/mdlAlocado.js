@@ -1,5 +1,6 @@
 const db = require("../../../database/databaseconfig");
 
+// Retorna alocações ativas junto com nome do animal e descrição do piquete
 const GetAllAlocado = async () => {
   return (
     await db.query(
@@ -34,7 +35,7 @@ const InsertAlocado = async (alocadoREGPar) => {
           alocadoREGPar.animalidfk,
           alocadoREGPar.piqueteidfk,
           alocadoREGPar.datainicio,
-          alocadoREGPar.datafinal || null,
+          alocadoREGPar.datafinal || null, // Converte data final vazia para NULL (alocação em andamento)
           alocadoREGPar.removido ?? false,
         ]
       )
@@ -58,7 +59,7 @@ const UpdateAlocado = async (alocadoIDPar, alocadoREGPar) => {
           alocadoREGPar.animalidfk,
           alocadoREGPar.piqueteidfk,
           alocadoREGPar.datainicio,
-          alocadoREGPar.datafinal || null,
+          alocadoREGPar.datafinal || null, // Permite manter a alocação sem data final
           alocadoREGPar.removido ?? false,
         ]
       )
@@ -70,6 +71,7 @@ const UpdateAlocado = async (alocadoIDPar, alocadoREGPar) => {
   return { msg, linhasAfetadas };
 };
 
+// Exclusão lógica (soft delete) mantendo o histórico no banco
 const DeleteAlocado = async (alocadoIDPar) => {
   let linhasAfetadas;
   let msg = "ok";

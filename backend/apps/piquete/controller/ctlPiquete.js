@@ -1,5 +1,6 @@
 const mdlPiquete = require("../model/mdlPiquete");
 
+// Controller CRUD de Piquete
 const GetAllPiquete = (req, res) =>
   (async () => {
     let registro = await mdlPiquete.GetAllPiquete();

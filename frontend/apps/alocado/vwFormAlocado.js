@@ -1,3 +1,4 @@
+// Valida a sessão e prepara o formulário conforme a operação da URL (Cr, Re, Up ou De)
 document.addEventListener("DOMContentLoaded", async function () {
   if (!dw3IsLogged()) {
     return;
@@ -49,6 +50,7 @@ document.addEventListener("DOMContentLoaded", async function () {
   }
 });
 
+// Inicializa os campos de seleção com busca usando Select2
 function inicializarSelectsAlocado() {
   $("#animalidfk").select2({
     theme: "bootstrap-5",
@@ -63,6 +65,7 @@ function inicializarSelectsAlocado() {
   });
 }
 
+// Busca animais e piquetes ativos em paralelo na API para popular os selects
 async function carregarDadosSelectsAlocado(servidorDw3) {
   try {
     var [resAnimal, resPiquete] = await Promise.all([
@@ -111,6 +114,7 @@ async function carregarDadosSelectsAlocado(servidorDw3) {
   }
 }
 
+// Bloqueia edição nos modos de visualização (Re) e remoção (De)
 function desabilitarCamposAlocado() {
   $("#animalidfk").prop("disabled", true);
   $("#piqueteidfk").prop("disabled", true);
@@ -118,6 +122,7 @@ function desabilitarCamposAlocado() {
   document.getElementById("datafinal").disabled = true;
 }
 
+// Monta o objeto JSON da alocação (envia null quando a data final não é informada)
 function montarAlocadoDoFormulario() {
   var dataFinalValor = document.getElementById("datafinal").value;
   return {
@@ -129,6 +134,7 @@ function montarAlocadoDoFormulario() {
   };
 }
 
+// Consome GET /getAlocadoByID/:id e preenche o formulário
 async function vwGetAlocadoByID() {
   var form = document.getElementById("frmAlocado");
   try {
@@ -191,6 +197,7 @@ async function vwGetAlocadoByID() {
   }
 }
 
+// Consome POST /insertAlocado enviando o token JWT no cabeçalho
 async function vwInsertAlocado() {
   var form = document.getElementById("frmAlocado");
   var btnInserir = document.getElementById("btnInserirAlocado");
@@ -234,6 +241,7 @@ async function vwInsertAlocado() {
   }
 }
 
+// Consome PUT /updateAlocado/:id para atualizar o registro
 async function vwUpdateAlocado() {
   var form = document.getElementById("frmAlocado");
   var btnAtualizar = document.getElementById("btnAtualizarAlocado");
@@ -285,6 +293,7 @@ async function vwUpdateAlocado() {
   }
 }
 
+// Consome DELETE /deleteAlocado/:id (soft delete no back-end)
 async function vwDeleteAlocado() {
   var form = document.getElementById("frmAlocado");
   var btnRemover = document.getElementById("btnRemoverAlocado");

@@ -15,6 +15,7 @@ document.addEventListener("DOMContentLoaded", function () {
   vwGetAllAnimal(servidorDw3, alertBox);
 });
 
+// Consome GET /getAllAnimal com autenticação JWT e carrega o DataTable
 async function vwGetAllAnimal(servidorDw3, alertBox) {
   try {
     if (!servidorDw3) {
@@ -48,6 +49,7 @@ async function vwGetAllAnimal(servidorDw3, alertBox) {
   }
 }
 
+// Configura o DataTable com formatação de data e botões de ação
 function inicializarTabelaAnimal(animais) {
   new DataTable("#tblAnimal", {
     data: animais,
@@ -109,6 +111,7 @@ function inicializarTabelaAnimal(animais) {
   });
 }
 
+// Redireciona para o formulário passando a operação (Re, Up ou De) e o ID
 function configurarOperacoesAnimal() {
   var tabela = document.getElementById("tblAnimal");
   if (!tabela) {
@@ -143,6 +146,7 @@ function configurarOperacoesAnimal() {
   });
 }
 
+// Escapa caracteres especiais para evitar injeção de HTML na tabela
 function escaparHtml(valor) {
   return String(valor)
     .replace(/&/g, "&amp;")

@@ -1,3 +1,4 @@
+// Valida a sessão e ajusta botões e campos conforme a operação (Cr, Re, Up ou De)
 document.addEventListener("DOMContentLoaded", async function () {
   if (!dw3IsLogged()) {
     return;
@@ -45,6 +46,7 @@ document.addEventListener("DOMContentLoaded", async function () {
   }
 });
 
+// Bloqueia edição nos modos de visualização (Re) e remoção (De)
 function desabilitarCamposPasto() {
   document.getElementById("descricao").disabled = true;
   document.getElementById("areatotal").disabled = true;
@@ -58,6 +60,7 @@ function montarPastoDoFormulario() {
   };
 }
 
+// Consome GET /getPastoByID/:id e preenche o formulário
 async function vwGetPastoByID() {
   var form = document.getElementById("frmPasto");
   try {
@@ -110,6 +113,7 @@ async function vwGetPastoByID() {
   }
 }
 
+// Consome POST /insertPasto enviando o token JWT no cabeçalho
 async function vwInsertPasto() {
   var form = document.getElementById("frmPasto");
   var btnInserir = document.getElementById("btnInserirPasto");
@@ -153,6 +157,7 @@ async function vwInsertPasto() {
   }
 }
 
+// Consome PUT /updatePasto/:id para atualizar o registro
 async function vwUpdatePasto() {
   var form = document.getElementById("frmPasto");
   var btnAtualizar = document.getElementById("btnAtualizarPasto");
@@ -202,6 +207,7 @@ async function vwUpdatePasto() {
   }
 }
 
+// Consome DELETE /deletePasto/:id (soft delete com checagem de piquetes ativos no back-end)
 async function vwDeletePasto() {
   var form = document.getElementById("frmPasto");
   var btnRemover = document.getElementById("btnRemoverPasto");

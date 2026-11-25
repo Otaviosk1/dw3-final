@@ -64,6 +64,7 @@ const DeletePasto = async (pastoIDPar) => {
   let linhasAfetadas;
   let msg = "ok";
   try {
+    // Impede exclusão lógica se houver piquetes ativos vinculados ao pasto
     const dependentes = (
       await db.query(
         "SELECT COUNT(*) AS total FROM piquete WHERE pastoidfk = $1 AND removido = false",
@@ -78,6 +79,7 @@ const DeletePasto = async (pastoIDPar) => {
       };
     }
 
+    // Soft delete: marca como removido sem apagar fisicamente
     linhasAfetadas = (
       await db.query(
         "UPDATE pasto SET removido = true WHERE pastoid = $1",

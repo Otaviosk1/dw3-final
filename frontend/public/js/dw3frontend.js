@@ -1,3 +1,4 @@
+// Protege as telas privadas: exige cookie IsLogged e token JWT no localStorage
 function dw3IsLogged() {
   const isLogged = document.cookie
     .split(";")
@@ -12,6 +13,7 @@ function dw3IsLogged() {
   return true;
 }
 
+// Encerra a sessão local expirando o cookie IsLogged e removendo o token JWT
 function dw3ClearIsLoggedCookie() {
   var isLogged = document.cookie
     .split(";")
@@ -24,6 +26,7 @@ function dw3ClearIsLoggedCookie() {
   localStorage.removeItem("token");
 }
 
+// Injeta o cabeçalho Authorization (Bearer <token>) nas requisições fetch para a API
 function dw3MontarHeadersAutenticacao(headers) {
   var token = localStorage.getItem("token");
   var finalHeaders = headers || {};

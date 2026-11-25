@@ -3,6 +3,7 @@ const mdlAlocado = require("../model/mdlAlocado");
 const GetAllAlocado = (req, res) =>
   (async () => {
     let registro = await mdlAlocado.GetAllAlocado();
+    // Formata as datas do PostgreSQL para YYYY-MM-DD antes de enviar ao front-end
     for (let i = 0; i < registro.length; i++) {
       const row = registro[i];
       if (row.datainicio) {
@@ -19,6 +20,7 @@ const GetAlocadoByID = (req, res) =>
   (async () => {
     const alocadoID = parseInt(req.params.alocadoid);
     let registro = await mdlAlocado.GetAlocadoByID(alocadoID);
+    // Formata as datas para preenchimento correto no input type="date"
     for (let i = 0; i < registro.length; i++) {
       const row = registro[i];
       if (row.datainicio) {

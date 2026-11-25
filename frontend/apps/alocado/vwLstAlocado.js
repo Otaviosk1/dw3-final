@@ -15,6 +15,7 @@ document.addEventListener("DOMContentLoaded", function () {
   vwGetAllAlocado(servidorDw3, alertBox);
 });
 
+// Consome GET /getAllAlocado com autenticação JWT e carrega o DataTable
 async function vwGetAllAlocado(servidorDw3, alertBox) {
   try {
     if (!servidorDw3) {
@@ -48,6 +49,7 @@ async function vwGetAllAlocado(servidorDw3, alertBox) {
   }
 }
 
+// Configura o DataTable com formatação de datas, badge "Em andamento" e botões de ação
 function inicializarTabelaAlocado(alocacoes) {
   new DataTable("#tblAlocado", {
     data: alocacoes,
@@ -120,6 +122,7 @@ function inicializarTabelaAlocado(alocacoes) {
   });
 }
 
+// Redireciona para o formulário passando a operação (Re, Up ou De) e o ID
 function configurarOperacoesAlocado() {
   var tabela = document.getElementById("tblAlocado");
   if (!tabela) {
@@ -154,6 +157,7 @@ function configurarOperacoesAlocado() {
   });
 }
 
+// Escapa caracteres especiais para evitar injeção de HTML na tabela
 function escaparHtml(valor) {
   return String(valor)
     .replace(/&/g, "&amp;")

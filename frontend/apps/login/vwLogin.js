@@ -1,4 +1,5 @@
 document.addEventListener("DOMContentLoaded", function () {
+  // Limpa qualquer sessão anterior ao abrir a tela de login
   dw3ClearIsLoggedCookie();
 
   var form = document.getElementById("loginForm");
@@ -27,6 +28,7 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     try {
+      // Envia as credenciais para a API de autenticação no back-end
       var response = await fetch(servidorDw3 + "/Login", {
         method: "POST",
         headers: {
@@ -49,6 +51,7 @@ document.addEventListener("DOMContentLoaded", function () {
         throw new Error(data.message || "Usuário ou senha inválidos.");
       }
 
+      // Armazena o token JWT no localStorage e registra o cookie de sessão
       localStorage.setItem("token", token);
       document.cookie = "IsLogged=true; path=/";
       window.location.href = "/home";

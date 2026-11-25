@@ -64,6 +64,7 @@ const DeleteAnimal = async (animalIDPar) => {
   let linhasAfetadas;
   let msg = "ok";
   try {
+    // Impede exclusão lógica se houver alocações ativas vinculadas ao animal
     const dependentes = (
       await db.query(
         "SELECT COUNT(*) AS total FROM alocado WHERE animalidfk = $1 AND removido = false",
@@ -78,6 +79,7 @@ const DeleteAnimal = async (animalIDPar) => {
       };
     }
 
+    // Soft delete: marca como removido sem apagar fisicamente
     linhasAfetadas = (
       await db.query(
         "UPDATE animal SET removido = true WHERE animalid = $1",

@@ -1,5 +1,6 @@
 const db = require("../../../database/databaseconfig");
 
+// Busca usuário ativo para validação de senha no controller
 const GetCredencial = async (loginPar) => {
   return (
     await db.query(

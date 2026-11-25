@@ -1,5 +1,6 @@
 const mdlPasto = require("../model/mdlPasto");
 
+// Controller CRUD de Pasto: recebe a requisição, chama o model e retorna JSON
 const GetAllPasto = (req, res) =>
   (async () => {
     let registro = await mdlPasto.GetAllPasto();

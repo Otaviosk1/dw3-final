@@ -1,3 +1,4 @@
+// Valida a sessão e ajusta botões e campos conforme a operação (Cr, Re, Up ou De)
 document.addEventListener("DOMContentLoaded", async function () {
   if (!dw3IsLogged()) {
     return;
@@ -45,6 +46,7 @@ document.addEventListener("DOMContentLoaded", async function () {
   }
 });
 
+// Bloqueia edição nos modos de visualização (Re) e remoção (De)
 function desabilitarCamposAnimal() {
   document.getElementById("nome").disabled = true;
   document.getElementById("datanasc").disabled = true;
@@ -58,6 +60,7 @@ function montarAnimalDoFormulario() {
   };
 }
 
+// Consome GET /getAnimalByID/:id e preenche o formulário
 async function vwGetAnimalByID() {
   var form = document.getElementById("frmAnimal");
   try {
@@ -114,6 +117,7 @@ async function vwGetAnimalByID() {
   }
 }
 
+// Consome POST /insertAnimal enviando o token JWT no cabeçalho
 async function vwInsertAnimal() {
   var form = document.getElementById("frmAnimal");
   var btnInserir = document.getElementById("btnInserirAnimal");
@@ -157,6 +161,7 @@ async function vwInsertAnimal() {
   }
 }
 
+// Consome PUT /updateAnimal/:id para atualizar o registro
 async function vwUpdateAnimal() {
   var form = document.getElementById("frmAnimal");
   var btnAtualizar = document.getElementById("btnAtualizarAnimal");
@@ -206,6 +211,7 @@ async function vwUpdateAnimal() {
   }
 }
 
+// Consome DELETE /deleteAnimal/:id (soft delete com checagem de alocações ativas no back-end)
 async function vwDeleteAnimal() {
   var form = document.getElementById("frmAnimal");
   var btnRemover = document.getElementById("btnRemoverAnimal");

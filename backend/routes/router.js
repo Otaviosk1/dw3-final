@@ -15,35 +15,35 @@ routerApp.get("/", (req, res) => {
   res.send("Olá mundo!");
 });
 
-// Rotas de Pasto
+// Rotas de Pasto (protegidas por JWT)
 routerApp.get("/getAllPasto", appLogin.AutenticaJWT, appPasto.GetAllPasto);
 routerApp.get("/getPastoByID/:pastoid", appLogin.AutenticaJWT, appPasto.GetPastoByID);
 routerApp.post("/insertPasto", appLogin.AutenticaJWT, appPasto.InsertPasto);
 routerApp.put("/updatePasto/:pastoid", appLogin.AutenticaJWT, appPasto.UpdatePasto);
 routerApp.delete("/deletePasto/:pastoid", appLogin.AutenticaJWT, appPasto.DeletePasto);
 
-// Rotas de Piquete
+// Rotas de Piquete (protegidas por JWT)
 routerApp.get("/getAllPiquete", appLogin.AutenticaJWT, appPiquete.GetAllPiquete);
 routerApp.get("/getPiqueteByID/:piqueteid", appLogin.AutenticaJWT, appPiquete.GetPiqueteByID);
 routerApp.post("/insertPiquete", appLogin.AutenticaJWT, appPiquete.InsertPiquete);
 routerApp.put("/updatePiquete/:piqueteid", appLogin.AutenticaJWT, appPiquete.UpdatePiquete);
 routerApp.delete("/deletePiquete/:piqueteid", appLogin.AutenticaJWT, appPiquete.DeletePiquete);
 
-// Rotas de Animal
+// Rotas de Animal (protegidas por JWT)
 routerApp.get("/getAllAnimal", appLogin.AutenticaJWT, appAnimal.GetAllAnimal);
 routerApp.get("/getAnimalByID/:animalid", appLogin.AutenticaJWT, appAnimal.GetAnimalByID);
 routerApp.post("/insertAnimal", appLogin.AutenticaJWT, appAnimal.InsertAnimal);
 routerApp.put("/updateAnimal/:animalid", appLogin.AutenticaJWT, appAnimal.UpdateAnimal);
 routerApp.delete("/deleteAnimal/:animalid", appLogin.AutenticaJWT, appAnimal.DeleteAnimal);
 
-// Rotas de Alocado
+// Rotas de Alocado (protegidas por JWT)
 routerApp.get("/getAllAlocado", appLogin.AutenticaJWT, appAlocado.GetAllAlocado);
 routerApp.get("/getAlocadoByID/:alocadoid", appLogin.AutenticaJWT, appAlocado.GetAlocadoByID);
 routerApp.post("/insertAlocado", appLogin.AutenticaJWT, appAlocado.InsertAlocado);
 routerApp.put("/updateAlocado/:alocadoid", appLogin.AutenticaJWT, appAlocado.UpdateAlocado);
 routerApp.delete("/deleteAlocado/:alocadoid", appLogin.AutenticaJWT, appAlocado.DeleteAlocado);
 
-// Rota Login
+// Rotas públicas de autenticação
 routerApp.post("/Login", appLogin.Login);
 routerApp.post("/Logout", appLogin.Logout);
 
